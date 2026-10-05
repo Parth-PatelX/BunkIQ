@@ -1,0 +1,144 @@
+    /* ---------- 1. BASIC SETUP ---------- */
+    * { box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    scroll-behavior: smooth; 
+    }
+
+    body {
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      background: #eef0ff;
+      color: #24204d;
+      line-height: 1.5;
+    }
+
+    .container { 
+        max-width: 900px; 
+        margin: 0 auto; 
+        padding: 0 18px; 
+    }
+
+    /* ---------- 2. HEADER ---------- */
+    header { 
+        background: #000000dc; 
+        color: #fff; 
+        padding: 14px 0; 
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand { 
+        display: flex; 
+        align-items: center; 
+        gap: 12px; 
+    }
+
+    .brand .icon { 
+        font-size: 3rem; 
+    }
+
+    .brand h1 { 
+    font-size: 1.5rem; 
+    }
+
+    .brand p { 
+        font-size: 0.85rem; 
+    color: #c9c5ff; }
+
+    nav { display: flex;
+         gap: 16px; }
+
+    nav a { 
+        color: #ffd23f; 
+        text-decoration: none; 
+        font-weight: bold; 
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    /* ---------- 3. MAIN LAYOUT ---------- */
+    main.container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-top: 26px;
+      padding-bottom: 26px;
+    }
+
+    .card {
+      background: #fff;
+      border: 3px solid #24204d;
+      border-radius: 14px;
+      padding: 22px;
+      /* Box shadow removed here */
+    }
+    .card h2 { margin-bottom: 14px; }
+
+    /* ---------- 4. FORM ---------- */
+    .field { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 6px; 
+        margin-bottom: 14px; 
+    }
+
+    label { font-weight: bold; }
+    small { color: #6a66a0; }
+    
+    input {
+      padding: 14px;
+      font-size: 1.1rem;
+      border: 3px solid #24204d;
+      border-radius: 10px;
+      font-family: inherit;
+    }
+    /* Yellow focus highlight removed here */
+
+    .buttons { 
+        display: flex; 
+        gap: 10px; 
+        flex-wrap: wrap; 
+    }
+
+    .btn {
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      font-family: inherit;
+      border: 3px solid #24204d;
+      border-radius: 10px;
+      background: #ff4f8b;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn:hover { background: #ff2f76; }
+
+    /* ---------- 5. RESULT CARD ---------- */
+    .result { 
+        text-align: center; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; }
+
+    .result .big { 
+        font-size: 4.5rem; 
+        font-weight: bold; 
+        line-height: 1.1; 
+        margin: 6px 0; 
+        color: #24204d; 
+    }
+
+    .result .unit { 
+        font-weight: bold; 
+        font-size: 1.1rem; 
+    }
+
+    .disclaimer { background-color:rgb(228, 55, 55) ;}
+
+
+  

@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/BunkIQ", "destination": "/index.html" },
+    { "source": "/bunk-iq", "destination": "/index.html" }
+  ]
+}

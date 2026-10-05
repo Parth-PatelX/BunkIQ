@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BunkIQ | How many classes can I still skip?</title>
+  <meta name="description" content="BunkIQ - Calculate how many classes you can skip while maintaining your target attendance percentage.">
+  <link rel="stylesheet" href="BunkIQstyle.css">
+</head>
+<body>
+
+  <header id="top">
+    <div class="container">
+      <div class="brand">
+        <div class="icon">😴</div>
+        <div>
+          <h1>BunkIQ</h1>
+          <p>How many classes can I still skip?</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#disclaimer">⚠ Disclaimer (T&Cs) MUST READ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="calculator">
+
+    <section class="card">
+      <h2>Tell me your sins</h2>
+      <form id="form" onsubmit="event.preventDefault(); calculate();">
+        <div class="field">
+          <label for="semester">Semester name</label>
+          <input type="text" id="semester" placeholder="e.g. Sem 3: Survival Mode">
+        </div>
+
+        <div class="field">
+          <label for="total">Total sessions held so far</label>
+          <input type="number" id="total" placeholder="e.g. 40" min="1">
+          <small>(FAAAHHHHHH !!!)</small>
+        </div>
+
+        <div class="field">
+          <label for="attended">Sessions you attended</label>
+          <input type="number" id="attended" placeholder="e.g. 32" min="0">
+          <small>(Be honest. The register knows.)</small>
+        </div>
+
+        <div class="field">
+          <label for="target">Target attendance (%)</label>
+          <input type="number" id="target" value="75" min="1" max="100">
+          <small>(Jitni Bhi Ho Zyada hi hai)</small>
+        </div>
+
+        <div class="buttons">
+          <button class="btn" id="judge-btn" type="button" onclick="calculate()">Judge me</button>
+          <small>Press the button at your own mental risk.</small>
+        </div>
+      </form>
+    </section>
+
+    <section class="card result" id="result">
+      <h2>Your verdict</h2>
+      <div class="big" id="big">?</div>
+      <p class="unit" id="unit">Fill in the form and I will tell you the truth..</p>
+      <br>
+      <p class="subtitle" id="subtitle">Spoiler: it is either good news or a lecture.</p>
+    </section>
+
+  </main>
+
+  <section class="container" id="disclaimer" style="margin-bottom: 40px;">
+    <div class="card" style="background-color: #ff000039;">
+      <h2 style="color: rgb(0, 0, 0);">Terms & (Lack of) Conditions : </h2>
+      <p style="margin-bottom: 16px;">By using this calculator, you agree that we hold absolute zero liability for your academic survival. Please note our official legal stances:</p>
+      
+      <ul style="margin-left: 20px; display: flex; flex-direction: column; gap: 12px;">
+        <li><strong>If attendance drops to 74.9%:</strong> The math is flawless. Your professor just lacks vision. Time to go beg for that 0.1%.</li>
+        <li><strong>If caught grinding COD Mobile instead of class:</strong> This app only calculates percentages. It does not provide tactical cover fire or lower your ping.</li>
+        <li><strong>If skipping class for Yugaantar sponsorships:</strong> We respect the hustle for passive PDCs, but the attendance register does not care if you are allowed to sit for placements or not.</li>
+        <li><strong>If your parents find this app:</strong> Deny everything. Tell them it's a highly sophisticated mechanistic interpretability model for your CS/AI degree.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    function calculate() {
+      const totalInput = document.getElementById("total").value;
+      const attendedInput = document.getElementById("attended").value;
+      const targetInput = document.getElementById("target").value;
+
+      const bigText = document.getElementById("big");
+      const unitText = document.getElementById("unit");
+      const subtitleText = document.getElementById("subtitle");
+
+      if (!totalInput || !attendedInput || !targetInput) {
+        bigText.textContent = "🤔";
+        unitText.textContent = "Please fill in all the numbers first!";
+        if (subtitleText) subtitleText.textContent = "I can't calculate your fate from thin air.";
+        return;
+      }
+
+      const t = parseFloat(totalInput);
+      const a = parseFloat(attendedInput);
+      const target = parseFloat(targetInput) / 100;
+
+      if (t <= 0) {
+        bigText.textContent = "❌";
+        unitText.textContent = "Total sessions must be greater than 0.";
+        if (subtitleText) subtitleText.textContent = "No classes held means no bunking math needed!";
+        return;
+      }
+
+      if (a > t) {
+        bigText.textContent = "👻";
+        unitText.textContent = "You attended more classes than were held?";
+        if (subtitleText) subtitleText.textContent = "Either you possess a time-turner or proxy magic is at work.";
+        return;
+      }
+
+      if (a < 0) {
+        bigText.textContent = "🚫";
+        unitText.textContent = "Attended classes cannot be negative.";
+        return;
+      }
+
+      const currentPercentage = ((a / t) * 100).toFixed(1);
+
+      if (a / t >= target) {
+        const canSkip = Math.floor((a / target) - t);
+        bigText.textContent = canSkip;
+        unitText.textContent = `classes you can still skip (Current: ${currentPercentage}%). Your bed just did a little happy emote.`;
+        if (subtitleText) subtitleText.textContent = `Keep your target at ${targetInput}% and enjoy responsibly!`;
+      } else {
+        const mustAttend = Math.ceil(((target * t) - a) / (1 - target));
+        bigText.textContent = mustAttend;
+        unitText.textContent = `classes in a row you must attend (Current: ${currentPercentage}%). Yes, in a row. Yes, physically. Yes, awake.`;
+        if (subtitleText) subtitleText.textContent = `To climb back up to ${targetInput}%, no more sleeping in!`;
+      }
+    }
+  </script>
+
+</body>
+</html>
